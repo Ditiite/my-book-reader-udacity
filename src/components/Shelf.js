@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import SelectShelf from './SelectShelf'
 
-export class Shelf extends Component {
-
+export default class Shelf extends Component {
 
     render() {
         return (
@@ -21,6 +21,10 @@ export class Shelf extends Component {
                                                 }}></div>
 
                                             <div className="book-shelf-changer">
+                                                <SelectShelf
+                                                    book={book}
+                                                    changeShelf={ this.props.changeShelf }
+                                                />
                                             </div>
                                         </div>
                                         <div className="book-title">{ book.title }</div>

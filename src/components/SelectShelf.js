@@ -9,13 +9,13 @@ class SelectShelf extends Component {
 
     handleChange(event){
         const shelf = event.target.value;
-        this.props.onChange(shelf);
+        this.props.changeShelf(this.props.book, shelf);
     }
 
     render() {
         return(
             <select
-                value={this.props.shelf}
+                value={this.props.book.shelf}
                 name="shelf"
                 onChange={this.handleChange}  
                 >
