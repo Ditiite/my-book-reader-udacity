@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SelectShelf from './SelectShelf'
 
-export default class Shelf extends Component {
+class Shelf extends Component {
 
     render() {
         return (
@@ -29,15 +29,17 @@ export default class Shelf extends Component {
                                         </div>
                                         <div className="book-title">{ book.title }</div>
                                         <div className="book-authors">{
-                                            book.authors.join(', ')
+                                            (book.authors)? book.authors.join(', '): ''
                                         }</div>
                                     </div>
                                 </li>
                             );
-                        }) }
+                        })}
                     </ol>
                 </div>
             </div>
         );
     }
 }
+
+export default Shelf;

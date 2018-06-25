@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Shelf from './components/Shelf';
+import Search from './components/Search';
 
 class BooksApp extends React.Component {
     constructor(props) {
@@ -17,7 +18,8 @@ class BooksApp extends React.Component {
             shelves: {
                 read: [],
                 wantToRead: [],
-                currentlyReading: []
+                currentlyReading: [],
+                books: []
             }
         }
 
@@ -70,19 +72,8 @@ class BooksApp extends React.Component {
         return (
             <div className="app">
                 {this.state.showSearchPage ? (
-                    <div className="search-books">
-                        <div className="search-books-bar">
-                            <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
-                            <div className="search-books-input-wrapper">
-
-                                <input type="text" placeholder="Search by title or author" />
-
-                            </div>
-                        </div>
-                        <div className="search-books-results">
-                            <ol className="books-grid"></ol>
-                        </div>
-                    </div>
+                    <Search 
+                        changeShelf={this.changeShelf}/>
                 ) : (
                         <div className="list-books">
                             <div className="list-books-title">
@@ -90,9 +81,15 @@ class BooksApp extends React.Component {
                             </div>
                             <div className="list-books-content">
                                 <div>
-                                    <Shelf title="Currently Reading" books={this.state.shelves.currentlyReading} changeShelf={this.changeShelf} />
-                                    <Shelf title="Want to Read" books={this.state.shelves.wantToRead} changeShelf={this.changeShelf} />
-                                    <Shelf title="Read" books={this.state.shelves.read} changeShelf={this.changeShelf} />
+                                    <Shelf title="Currently Reading" 
+                                        books={this.state.shelves.currentlyReading} 
+                                        changeShelf={this.changeShelf} />
+                                    <Shelf title="Want to Read" 
+                                        books={this.state.shelves.wantToRead} 
+                                        changeShelf={this.changeShelf} />
+                                    <Shelf title="Read" 
+                                        books={this.state.shelves.read} 
+                                        changeShelf={this.changeShelf} />
                                 </div>
                             </div>
                             <div className="open-search">
