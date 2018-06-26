@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as BooksAPI from '../BooksAPI';
-import Shelf from './Shelf';
+import Shelf from './Shelf.jsx';
 
 class Search extends Component {
 
@@ -47,7 +47,7 @@ class Search extends Component {
         return(
             <div className="search-books">
                 <div className="search-books-bar">
-                    <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+                    <a className="close-search" onClick={this.props.handleClick}>Close</a>
                     <div className="search-books-input-wrapper">
 
                         <input type="text" placeholder="Search by title or author" 

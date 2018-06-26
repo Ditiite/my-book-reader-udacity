@@ -1,8 +1,8 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Shelf from './components/Shelf';
-import Search from './components/Search';
+import Shelf from './components/Shelf.jsx';
+import Search from './components/Search.jsx';
 
 class BooksApp extends React.Component {
     constructor(props) {
@@ -23,7 +23,8 @@ class BooksApp extends React.Component {
             }
         }
 
-        this.changeShelf = this.changeShelf.bind(this)
+        this.changeShelf = this.changeShelf.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     changeShelf(book, newShelf) {
@@ -70,13 +71,21 @@ class BooksApp extends React.Component {
         });
     }
     
+    handleClick(showSearchPage) {
+        this.setState({
+            showSearchPage: !showSearchPage
+        })
+    }
+
     render() {
         return (
             <div className="app">
                 {this.state.showSearchPage ? (
                     <Search
                         myBooks={ this.state.books }
-                        changeShelf={this.changeShelf}/>
+                        changeShelf={this.changeShelf}
+                        handleClick={this.handleClick}
+                        />
                 ) : (
                         <div className="list-books">
                             <div className="list-books-title">

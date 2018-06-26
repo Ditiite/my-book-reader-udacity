@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SelectShelf from './SelectShelf'
+import SelectShelf from './SelectShelf.jsx'
 
 class Shelf extends Component {
 
