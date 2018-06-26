@@ -1,6 +1,7 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
+import React from 'react';
+import { Route, Link } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
 import Shelf from './components/Shelf.jsx';
 import Search from './components/Search.jsx';
 
@@ -24,7 +25,6 @@ class BooksApp extends React.Component {
         }
 
         this.changeShelf = this.changeShelf.bind(this);
-        this.handleClick = this.handleClick.bind(this);
     }
 
     changeShelf(book, newShelf) {
@@ -71,22 +71,19 @@ class BooksApp extends React.Component {
         });
     }
     
-    handleClick(showSearchPage) {
-        this.setState({
-            showSearchPage: !showSearchPage
-        })
-    }
-
     render() {
         return (
             <div className="app">
-                {this.state.showSearchPage ? (
-                    <Search
+                <Route exact path="/search"
+                    render={() => (
+                        <Search
                         myBooks={ this.state.books }
                         changeShelf={this.changeShelf}
-                        handleClick={this.handleClick}
                         />
-                ) : (
+                    )}
+                />
+                <Route exact path="/"
+                    render={() => (
                         <div className="list-books">
                             <div className="list-books-title">
                                 <h1>MyReads</h1>
@@ -105,10 +102,12 @@ class BooksApp extends React.Component {
                                 </div>
                             </div>
                             <div className="open-search">
-                                <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+                                <Link to="search">Add a book</Link>
                             </div>
                         </div>
                     )}
+                />
+
             </div>
         )
     }

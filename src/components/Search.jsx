@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as BooksAPI from '../BooksAPI';
 import Shelf from './Shelf.jsx';
 
@@ -17,17 +18,11 @@ class Search extends Component {
     handleChange(event) {
         const keyword = event.target.value.trim();
 
-        if (!keyword) {
-            return;
-        }
-
         BooksAPI.search( keyword ).then((result) => {
-            if (!Array.isArray(result)) {
-                return;
-            }
+            const books = (Array.isArray(result))? result: [];
             
             this.setState({
-                books: result
+                books
             })
         })
     }
@@ -47,7 +42,7 @@ class Search extends Component {
         return(
             <div className="search-books">
                 <div className="search-books-bar">
-                    <a className="close-search" onClick={this.props.handleClick}>Close</a>
+                    <Link to='/' className="close-search">Close</Link>
                     <div className="search-books-input-wrapper">
 
                         <input type="text" placeholder="Search by title or author" 
