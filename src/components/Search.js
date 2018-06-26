@@ -15,18 +15,35 @@ class Search extends Component {
     }
 
     handleChange(event) {
-        const keyword = event.target.value;
+        const keyword = event.target.value.trim();
+
+        if (!keyword) {
+            return;
+        }
+
         BooksAPI.search( keyword ).then((result) => {
-            console.log(result);
-            if (Array.isArray(result)) {
-                this.setState({
-                    books: result
-                })
+            if (!Array.isArray(result)) {
+                return;
             }
+            
+            this.setState({
+                books: result
+            })
         })
     }
-
+    
     render() {
+        const displayBooks = this.state.books.map((resultBook) => {
+            const sameBook = this.props.myBooks.find( (myBook) => myBook.id === resultBook.id );
+            if (sameBook) {
+                resultBook.shelf = sameBook.shelf;
+            } else {
+                resultBook.shelf = 'none';
+            }
+    
+            return resultBook;
+        });
+
         return(
             <div className="search-books">
                 <div className="search-books-bar">
@@ -42,7 +59,7 @@ class Search extends Component {
                     <ol className="books-grid">
                         <Shelf 
                             changeShelf={this.props.changeShelf}
-                            books={this.state.books} />
+                            books={displayBooks} />
                     </ol>
                 </div>
             </div>

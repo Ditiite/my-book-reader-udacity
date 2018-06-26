@@ -15,11 +15,11 @@ class BooksApp extends React.Component {
              * pages, as well as provide a good URL they can bookmark and share.
              */
             showSearchPage: false,
+            books: [],
             shelves: {
                 read: [],
                 wantToRead: [],
-                currentlyReading: [],
-                books: []
+                currentlyReading: []
             }
         }
 
@@ -61,8 +61,10 @@ class BooksApp extends React.Component {
                     default:
                         throw new Error('Unknown shelf');
                 }
+
             });
             this.setState({
+                books: result,
                 shelves
             });
         });
@@ -72,7 +74,8 @@ class BooksApp extends React.Component {
         return (
             <div className="app">
                 {this.state.showSearchPage ? (
-                    <Search 
+                    <Search
+                        myBooks={ this.state.books }
                         changeShelf={this.changeShelf}/>
                 ) : (
                         <div className="list-books">
