@@ -92,5 +92,6 @@ During the proces of developing the project, had to folow Udacity Style Guide
   * [Udacity's JavaScript Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html)
   * [Udacity's Git Style Guide](https://udacity.github.io/git-styleguide/)
 
-
+#### References
+Background patter is from [Transparent textures](https://www.transparenttextures.com/)
 
